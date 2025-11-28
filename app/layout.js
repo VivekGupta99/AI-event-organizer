@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressContentEditableWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`bg-linear-to-br form-gray-950 via-zinc-900 to-stone-900 text-white`}
       >
