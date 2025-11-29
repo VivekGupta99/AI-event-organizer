@@ -41,6 +41,7 @@ export default defineSchema({
         startDate: v.number(),
         endDate: v.number(),
         timezone: v.string(),
+
         // Location 
         locationType: v.union(v.literal("physical"), v.literal("online")),
         venue: v.optional(v.string()),

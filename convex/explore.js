@@ -75,11 +75,22 @@ export const getPopularEvents = query({
 })
 export const getEventsByCategory = query({
     args: {
-        category: v.optional(v.number()),
+        category: v.optional(v.string()),
         limit: v.optional(v.number()),
     },
+
     handler: async (ctx, args) => {
         const now = Date.now();
+
+        if (!args.category) {
+            // return some default behaviour instead of throwing
+            return ctx.db
+                .query("events")
+                .filter((q) => q.gte(q.field("startDate"), now))
+                .collect()
+                .then(events => events.slice(0, args.limit ?? 12));
+        }
+
         const events = await ctx.db
             .query("events")
             .withIndex("by_category", (q) => q.eq("category", args.category))

@@ -65,7 +65,7 @@ const ExplorePage = () => {
         const state = currentUser?.location?.state || "Haryana";
 
         const slug = currentLocationSlug(city, state);
-        router.push(`/explore/location/${slug}`);
+        router.push(`/explore/${slug}`);
     }
 
     // Loading state
